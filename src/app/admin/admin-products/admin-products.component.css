@@ -1,0 +1,19 @@
+table {
+    width: 100%;
+    font-feature-settings: black;
+    background-color: rgb(123, 129, 122);
+}
+
+.mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+td,
+th {
+    width: 25%;
+}
+
+.addProductBtn {
+    margin: 2%;
+}

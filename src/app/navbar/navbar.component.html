@@ -1,0 +1,41 @@
+<mat-toolbar color="accent">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <a [routerLink]="['/my-orders']" routerLinkActive="/my-orders">
+            <button mat-menu-item>
+                <span>My Orders</span>
+            </button>
+        </a>
+        <a [routerLink]="['/admin/orders']">
+            <button mat-menu-item>
+                <span>Manage Orders</span>
+            </button>
+        </a>
+        <a [routerLink]="['/admin/products']">
+            <button mat-menu-item>
+                <span>Manage products</span>
+            </button>
+        </a>
+        <a [routerLink]="['']">
+            <button mat-menu-item>
+                <span>Log out</span>
+            </button>
+        </a>
+    </mat-menu>
+    <span>Organic Shop</span>
+    <span class="example-spacer"></span>
+
+    <a [routerLink]="['/shopping-cart']" routerLinkActive="/shopping-cart">
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+            <mat-icon>shopping_cart</mat-icon>
+        </button>
+    </a>
+
+    <!-- <a [routerLink]="['/shopping-cart']" routerLinkActive="/shopping-cart">
+        <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+            <mat-icon>favorite</mat-icon>
+        </button>
+    </a> -->
+</mat-toolbar>
