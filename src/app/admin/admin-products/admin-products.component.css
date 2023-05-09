@@ -12,8 +12,19 @@ table {
 td,
 th {
     width: 25%;
+    font-size: 20px;
+    padding-top: 10px;
 }
 
 .addProductBtn {
     margin: 2%;
 }
+
+tbody
+{
+  text-align: center;
+}
+
+
+
+

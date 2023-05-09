@@ -3,22 +3,23 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class CategoryService {
-  categories: any[] = [];
+  // categories: any[] = [];
   public categories$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(private db: AngularFireDatabase) {}
 
   public getCategoriesImmediate(): Observable<any[]> {
-    return this.db.list('/categories').valueChanges().pipe(
-      map(
-        categories => {
+    return this.db
+      .list('/categories')
+      .valueChanges()
+      .pipe(
+        map((categories) => {
           return categories;
-        }),
-    );
+        })
+      );
   }
 
   //Second Way
@@ -28,6 +29,4 @@ export class CategoryService {
   //       this.categories$.next(categories);
   //     });
   // }
-
-
 }

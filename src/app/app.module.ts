@@ -7,11 +7,11 @@ import { CommonModule } from '@angular/common';
 //Firebase
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 //Angular material
-import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
@@ -58,7 +58,7 @@ import { ProductService } from './product.service';
     LoginComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    ProductFormComponent
+    ProductFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,16 +88,17 @@ import { ProductService } from './product.service';
       { path: 'my-orders', component: MyOrdersComponent },
       { path: 'order-success', component: OrderSuccessComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'admin/products', component: AdminProductsComponent },
       { path: 'admin/orders', component: AdminOrdersComponent },
-      { path: 'admin/product-form', component: ProductFormComponent }
-    ])
+      { path: 'admin/products/new', component: ProductFormComponent },
+      { path: 'admin/products/:id', component: ProductFormComponent },
+      { path: 'admin/products', component: AdminProductsComponent },
+    ]),
   ],
   providers: [
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
     CategoryService,
-    ProductService
+    ProductService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
