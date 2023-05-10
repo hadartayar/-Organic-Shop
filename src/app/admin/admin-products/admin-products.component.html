@@ -1,8 +1,4 @@
-<a
-  mat-raised-button
-  class="addProductBtn"
-  [routerLink]="['/admin/products/new']"
->
+<a mat-raised-button class="addProductBtn" [routerLink]="['/admin/products/new']">
   Add New Product
 </a>
 <br />
@@ -14,14 +10,13 @@
       <tr>
         <th>Title</th>
         <th>Price</th>
-        <th>key</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let p of products$ | async">
-        <td>{{ p.title }}</td>
-        <td>{{ p.price }}</td>
-        <td>{{ p | json }}</td>
+        <td>{{ p.payload.val().title }}</td>
+        <td>{{ p.payload.val().price }}</td>
+        <!-- <td>{{ p.key }}</td> -->
         <td><a [routerLink]="['/admin/products/', p.key]">Edit</a></td>
       </tr>
     </tbody>

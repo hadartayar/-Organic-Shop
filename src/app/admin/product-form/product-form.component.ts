@@ -2,7 +2,7 @@ import { ProductService } from './../../product.service';
 import { CategoryService } from './../../category.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   Observable,
   Subscribable,
@@ -11,6 +11,9 @@ import {
   map,
   of,
 } from 'rxjs';
+import { take } from 'rxjs/operators';
+import { ConstantPool } from '@angular/compiler';
+
 
 @Component({
   selector: 'product-form',
@@ -18,18 +21,33 @@ import {
   styleUrls: ['./product-form.component.css'],
 })
 export class ProductFormComponent implements OnInit {
+
   public categories$: Observable<any[]> = of([]); //$= observable
   //private categoriesSubscription: Subscription = new Subscription();
 
+  public product: any = {};
+
   constructor(
-    private router: Router,
+    private router: Router, //For navigate
+    private route: ActivatedRoute, //For catch Route Params  
     private categoryService: CategoryService,
     private productService: ProductService
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.categories$ = this.categoryService.getCategoriesImmediate();
+    let id = this.route.snapshot.paramMap.get('id');
+    console.log(id);
+    if (id) {
+      this.productService.getById(id).pipe(take(1)).subscribe(p => {
+        this.product = p;
+        console.log(this.product);
+      });
+
+    }
+
+
   }
+
+  ngOnInit() { }
 
   onSubmit(product: Object) {
     console.log(product);
@@ -37,6 +55,14 @@ export class ProductFormComponent implements OnInit {
     this.router.navigate(['/admin/products']);
   }
 }
+
+
+
+
+
+
+
+
 
 //second way to get categories from the server:
 // ngOnDestroy() {

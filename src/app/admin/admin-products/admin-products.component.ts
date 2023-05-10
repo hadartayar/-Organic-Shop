@@ -19,24 +19,13 @@ export interface ProductData {
 })
 export class AdminProductsComponent implements OnInit {
   public products$: Observable<any[]> = of([]); //$= observable
-  public productsKeys$: Observable<any[]> = of([]);
-  //public productsSubscription: Subscription = new Subscription();
 
-  constructor(private productService: ProductService) {  }
+  constructor(private productService: ProductService) { }
   displayedColumns: string[] = ['title', 'price'];
 
   ngOnInit(): void {
     //this.subscribeToProducts();
     this.products$ = this.productService.getAllProducts();
-    this.productsKeys$ = this.productService.getAllKeys();
   }
-  //   forkJoin([this.products$, this.productsKeys$]).subscribe((results) => {
-  //     // results[0] is our character
-  //     // results[1] is our character homeworld
-  //     results[0].products$ = results[1];
-  //     this.productsKeys$ = results[0];
-  //   });
-  // }
-
 
 }
