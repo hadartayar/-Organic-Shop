@@ -10,13 +10,8 @@ export class ProductService {
 
   constructor(private db: AngularFireDatabase) { }
 
-  create(product: Object) {
-    return this.db.list('/products').push(product);
-  }
 
-  // getAll(){
-  //   return this.db.list('/products');
-  // }
+
 
   // public getAllProducts(): Observable<any[]> { //Only product without keys
   //   return this.db
@@ -36,5 +31,17 @@ export class ProductService {
 
   public getById(productId: any) {
     return this.db.object('/products/' + productId).valueChanges();
+  }
+
+  create(product: Object) {
+    return this.db.list('/products').push(product);
+  }
+
+  public update(productId: any, product: any) {
+    return this.db.object('/products/' + productId).update(product);
+  }
+
+  public delete(productId: any) {
+    return this.db.object('/products/' + productId).remove();
   }
 }

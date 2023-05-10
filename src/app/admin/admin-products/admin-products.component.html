@@ -4,6 +4,12 @@
 <br />
 <br />
 
+
+<!-- <mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="filter(input.value)" placeholder="Search..." #input>
+</mat-form-field> -->
+
 <div>
   <table>
     <thead>
@@ -13,10 +19,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let p of products$ | async">
-        <td>{{ p.payload.val().title }}</td>
-        <td>{{ p.payload.val().price }}</td>
-        <!-- <td>{{ p.key }}</td> -->
+      <tr *ngFor="let p of products">
+        <td>{{ p.product.title }}</td>
+        <!-- <td>{{ p.product.val().price }}</td> -->
+        <td>{{ p.product|json }}</td>
         <td><a [routerLink]="['/admin/products/', p.key]">Edit</a></td>
       </tr>
     </tbody>

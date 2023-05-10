@@ -26,6 +26,7 @@ export class ProductFormComponent implements OnInit {
   //private categoriesSubscription: Subscription = new Subscription();
 
   public product: any = {};
+  public id;
 
   constructor(
     private router: Router, //For navigate
@@ -34,24 +35,32 @@ export class ProductFormComponent implements OnInit {
     private productService: ProductService
   ) {
     this.categories$ = this.categoryService.getCategoriesImmediate();
-    let id = this.route.snapshot.paramMap.get('id');
-    console.log(id);
-    if (id) {
-      this.productService.getById(id).pipe(take(1)).subscribe(p => {
+    this.id = this.route.snapshot.paramMap.get('id');
+    console.log(this.id);
+    if (this.id) {
+      this.productService.getById(this.id).pipe(take(1)).subscribe(p => {
         this.product = p;
         console.log(this.product);
       });
 
     }
-
-
   }
 
   ngOnInit() { }
 
   onSubmit(product: Object) {
     console.log(product);
-    this.productService.create(product);
+    if (this.id)
+      this.productService.update(this.id, product);
+    else
+      this.productService.create(product);
+    this.router.navigate(['/admin/products']);
+  }
+
+  delete() {
+    if (!confirm("Are you sure you want to delete this product?"))
+      return;
+    this.productService.delete(this.id);
     this.router.navigate(['/admin/products']);
   }
 }
