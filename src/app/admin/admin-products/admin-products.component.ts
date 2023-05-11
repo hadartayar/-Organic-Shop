@@ -30,7 +30,7 @@ export class AdminProductsComponent implements OnInit {
         let productsWithKeys: Array<ProductWithKey> = result.map((p: any) => {
           let productWithKey: ProductWithKey = {
             key: p.key,
-            product: p.payload
+            product: p.payload.val()
           }
           return productWithKey;
         })

@@ -23,6 +23,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+
 
 //Components
 import { AppComponent } from './app.component';
@@ -76,6 +78,7 @@ import { ProductService } from './product.service';
     MatInputModule,
     MatCardModule,
     MatSelectModule,
+    MatListModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     AngularFireAuthModule,
@@ -101,4 +104,4 @@ import { ProductService } from './product.service';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

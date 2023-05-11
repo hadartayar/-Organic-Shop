@@ -19,10 +19,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let p of products">
+      <tr *ngFor="let p of products$ | async">
         <td>{{ p.product.title }}</td>
-        <!-- <td>{{ p.product.val().price }}</td> -->
-        <td>{{ p.product|json }}</td>
+        <td>{{ p.product.price }}</td>
+        <!-- <td>{{ p.product|json }}</td> -->
         <td><a [routerLink]="['/admin/products/', p.key]">Edit</a></td>
       </tr>
     </tbody>

@@ -34,7 +34,7 @@ export class ProductFormComponent implements OnInit {
     private categoryService: CategoryService,
     private productService: ProductService
   ) {
-    this.categories$ = this.categoryService.getCategoriesImmediate();
+    this.categories$ = this.categoryService.getCategories();
     this.id = this.route.snapshot.paramMap.get('id');
     console.log(this.id);
     if (this.id) {
@@ -42,7 +42,6 @@ export class ProductFormComponent implements OnInit {
         this.product = p;
         console.log(this.product);
       });
-
     }
   }
 
@@ -64,10 +63,6 @@ export class ProductFormComponent implements OnInit {
     this.router.navigate(['/admin/products']);
   }
 }
-
-
-
-
 
 
 

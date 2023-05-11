@@ -9,9 +9,9 @@ export class CategoryService {
   // categories: any[] = [];
   public categories$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
 
-  constructor(private db: AngularFireDatabase) {}
+  constructor(private db: AngularFireDatabase) { }
 
-  public getCategoriesImmediate(): Observable<any[]> {
+  public getCategories(): Observable<any[]> {
     return this.db
       .list('/categories')
       .valueChanges()

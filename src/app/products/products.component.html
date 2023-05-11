@@ -1,1 +1,28 @@
-<p>products works!</p>
+<div class="row">
+    <div class="column left">
+        <mat-selection-list #categories [multiple]="false">
+            <a routerLink="/" [queryParams]="{category: c.name }" *ngFor="let c of categories$ | async">
+                <mat-list-option>
+                    {{c.name}}
+                </mat-list-option>
+            </a>
+        </mat-selection-list>
+    </div>
+
+
+    <div class="column right cardsContainer">
+        <div *ngFor="let p of products$ | async">
+            <mat-card class="card">
+                <mat-card-header class="card-header">
+                    <mat-card-title>{{ p.product.title }} {{ p.product.price | currency : "USD" : true
+                        }}</mat-card-title>
+                    <mat-card-subtitle>{{ p.product.category }}</mat-card-subtitle>
+                </mat-card-header>
+                <img class="cardImg" mat-card-image *ngIf="p.product.imageURL" [src]="p.product.imageURL" />
+                <mat-card-actions>
+                    <button mat-button>Add To Cart</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>
